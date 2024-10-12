@@ -1,13 +1,10 @@
-import {Button} from "@/components/ui/button.tsx";
+import {RouterProvider} from "react-router-dom";
+import {router} from "@/router/router.tsx";
 
 function App() {
 
   return (
-    <h1 className="text-3xl font-bold underline">
-      <div>
-        <Button>Click me</Button>
-      </div>
-    </h1>
+    <RouterProvider router={router}/>
   )
 }
 
