@@ -1,58 +1,13 @@
 import profilePic from '@/assets/images/profile-pics.jpg'
 import {Avatar, AvatarFallback, AvatarImage} from '@/components/ui/avatar';
-import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from '@/components/ui/card';
+import {Card, CardContent, CardHeader, CardTitle} from '@/components/ui/card';
 import {Tabs, TabsContent, TabsList, TabsTrigger} from '@/components/ui/tabs';
-import {Button} from "@/components/ui/button.tsx";
-import {Input} from '@/components/ui/input';
-import {Label} from '@/components/ui/label';
 import {candidate} from "@/data/candidate-data.ts";
-import {Link} from "react-router-dom";
+import {WorkHistoryItem} from "@/pages/home/WorkHistoryItem.tsx";
+import {EducationItem} from "@/pages/home/EducationItem.tsx";
+import {TechContainer} from "@/pages/home/TechContainer.tsx";
+import {techSkills} from "@/pages/home/data/tech-skills.ts";
 
-
-// @ts-ignore
-function WorkHistoryItem({company, title, from, to, logoSrc, link}) {
-  return <div className={"flex gap-4"}>
-    <Link to={link}>
-      <Avatar className={"size-10"}>
-        <AvatarImage src={logoSrc}/>
-        <AvatarFallback>CN</AvatarFallback>
-      </Avatar>
-    </Link>
-    <div>
-      <div className={"font-semibold"}>{title}</div>
-      <div>
-        <span>{company}</span>-
-        <span>Full time</span>
-      </div>
-      <div>
-        <span>{from}</span> - <span>{to}</span>
-      </div>
-    </div>
-  </div>;
-}
-
-// @ts-ignore
-function EducationItem({school, from, to, degree, logoSrc, link}) {
-  return <div className={"flex gap-4"}>
-    <Link to={link}>
-      <Avatar className={"size-10"}>
-        <AvatarImage src={logoSrc}/>
-        <AvatarFallback>CN</AvatarFallback>
-      </Avatar>
-    </Link>
-    <div>
-      <div className={"font-semibold"}>{school}</div>
-      <div>
-        <span>{from}</span> - <span>{to}</span>
-      </div>
-      <div>
-        <span>{degree}</span>-
-        <span>Full time</span>
-      </div>
-
-    </div>
-  </div>;
-}
 
 function HomePage() {
   return (
@@ -72,9 +27,19 @@ function HomePage() {
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
       </div>
+      <div className={'text-2xl font-semibold mt-16 text-center'}>My Tech Stack</div>
+      {
+        techSkills.map(skill => (
+          <TechContainer key={skill.id}
+                         title={skill.name}
+                         techs={skill.techs}
+          />
+        ))
+      }
 
+      <div className={'text-2xl font-semibold mt-16 text-center'}>My Career</div>
       <div>
-        <Tabs defaultValue="work-exp" className="max-w-2xl mx-auto mt-32">
+        <Tabs defaultValue="work-exp" className="max-w-2xl mx-auto mt-8">
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="work-exp">Work Experience</TabsTrigger>
             <TabsTrigger value="edu">Education</TabsTrigger>
@@ -118,7 +83,7 @@ function HomePage() {
                                    link={edu.link}
                                    degree={edu.degree}
                     />
-                  ) )
+                  ))
                 }
               </CardContent>
             </Card>

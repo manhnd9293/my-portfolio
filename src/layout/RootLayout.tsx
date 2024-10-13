@@ -20,7 +20,7 @@ function RootLayout() {
     <div className={'min-h-screen max-w-4xl mx-auto flex flex-col'}>
       <Header/>
       <div className={'flex-1'}><Outlet/></div>
-      <div className={'flex'}>
+      <div className={'flex mt-16 justify-center'}>
         <div>
           2024 - Manh Nguyen
         </div>
